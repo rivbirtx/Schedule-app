@@ -1,0 +1,48 @@
+/*
+ * tokens.css - Design tokens (Tailwind v4 @theme).
+ *
+ * Semua nilai warna/font/shadow didefinisikan SEKALI di sini. Tailwind otomatis membuat
+ *   - variabel CSS  : var(--color-surface)
+ *   - utility class : bg-surface, text-ink, border-line, font-pixel, shadow-pixel ...
+ * File CSS lain hanya MEMAKAI token ini, tidak menulis ulang kode hex.
+ */
+@theme {
+  /* ---- Warna dasar (dari spesifikasi) ---- */
+  --color-night: #080f1a;      /* background halaman */
+  --color-surface: #111d30;    /* panel */
+  --color-surface-2: #0b1424;  /* area cekung di dalam panel (kolom, input) */
+  --color-surface-3: #182843;  /* hover / elemen terangkat */
+  --color-line: #334155;       /* border netral */
+  --color-edge: #1d4ed8;       /* border panel utama (biru neon redup) */
+  --color-ink: #f1f5f9;        /* teks utama */
+  --color-muted: #94a3b8;      /* teks sekunder */
+
+  /* ---- Aksen ---- */
+  --color-blue: #2563eb;
+  --color-cyan: #22d3ee;
+  --color-yellow: #facc15;
+  --color-pink: #f472b6;
+  --color-hot: #f43f78;        /* pink panas untuk tombol utama (kontras lebih baik dgn teks putih) */
+  --color-green: #10b981;
+  --color-purple: #8b5cf6;
+  --color-red: #ef4444;
+  --color-orange: #fb923c;     /* api streak */
+
+  /* ---- Tipografi ---- */
+  --font-pixel: "Press Start 2P", ui-monospace, "Cascadia Mono", "Courier New", monospace;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* ---- Bayangan pixel: offset keras, TANPA blur ---- */
+  --shadow-pixel: 4px 4px 0 0 #000;
+  --shadow-pixel-sm: 2px 2px 0 0 #000;
+  --shadow-pixel-pressed: 0 0 0 0 #000;
+
+  /* ---- Breakpoint (default Tailwind dipertahankan: sm 640, md 768, lg 1024, xl 1280) ---- */
+}
+
+:root {
+  --border-width: 2px;          /* border tegas di seluruh UI */
+  --sidebar-width: 11.5rem;     /* lebar sidebar desktop */
+  --sidebar-width-compact: 4.75rem; /* lebar sidebar tablet (hanya ikon) */
+  --bottom-nav-height: 4.25rem;
+}

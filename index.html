@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080F1A" />
+    <meta name="description" content="Pixel Schedule - a retro arcade 8-bit productivity app: Kanban, calendar, XP and streaks." />
+    <title>Pixel Schedule</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/images/gamepad.svg" />
+
+    <!--
+      Font arcade "Press Start 2P" dimuat dari Google Fonts. Jika offline, tampilan otomatis memakai
+      font monospace cadangan (lihat --font-pixel di src/styles/tokens.css). Untuk self-host,
+      lihat docs/UI-GUIDE.md bagian "Font".
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip-link" href="#page">Skip to content</a>
+
+    <!-- Kerangka tetap. Isi tiap area dirender oleh src/main.js -->
+    <div id="app" class="app-shell">
+      <aside id="sidebar" class="sidebar" aria-label="Sidebar"></aside>
+      <div class="app-main">
+        <header id="header" class="page-header"></header>
+        <main id="page" class="page" tabindex="-1"></main>
+      </div>
+      <nav id="bottom-nav" class="bottom-nav" aria-label="Main navigation (mobile)"></nav>
+    </div>
+
+    <!-- Wadah overlay: modal dan toast berada di luar #app agar tidak ikut dirender ulang -->
+    <div id="modal-root"></div>
+    <div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+
+    <noscript>Pixel Schedule needs JavaScript to run.</noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

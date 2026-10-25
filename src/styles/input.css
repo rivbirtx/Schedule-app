@@ -1,0 +1,21 @@
+/*
+ * input.css - TITIK MASUK CSS (diimpor oleh src/main.js).
+ *
+ * Urutan impor penting:
+ *   1. tailwindcss    -> reset + utility class (Tailwind v4: satu baris, tanpa tailwind.config.js)
+ *   2. tokens.css     -> @theme: warna, font, shadow (SUMBER TUNGGAL nilai desain)
+ *   3. base.css       -> gaya elemen dasar (body, heading, focus ring)
+ *   4. layout.css     -> kerangka halaman (sidebar, header, bottom nav, grid halaman)
+ *   5. components.css -> komponen arcade (panel, tombol, badge, kartu, kalender, modal, ...)
+ *   6. utilities.css  -> helper kecil (tone-*, visually-hidden, animasi)
+ *
+ * `layer(...)` menaruh CSS kita di layer Tailwind yang sesuai. Akibatnya class utility
+ * Tailwind (mis. `hidden`, `md:flex`) SELALU menang atas class komponen kita saat bentrok,
+ * sehingga kita bisa menggabungkan keduanya tanpa perang specificity.
+ */
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./base.css" layer(base);
+@import "./layout.css" layer(components);
+@import "./components.css" layer(components);
+@import "./utilities.css" layer(components);

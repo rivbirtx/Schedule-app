@@ -1,0 +1,38 @@
+/*
+ * utilities.css - helper kecil.
+ *
+ * "tone-*" = SATU variabel warna (--tone) yang dibaca oleh komponen (badge, kartu, titik agenda ...).
+ * Dengan begitu JavaScript cukup menambahkan class `tone-pink` tanpa membuat nama class Tailwind
+ * dinamis (yang tidak akan terdeteksi oleh scanner Tailwind).
+ */
+.tone-blue   { --tone: var(--color-blue);   --tone-ink: #fff; }
+.tone-cyan   { --tone: var(--color-cyan);   --tone-ink: #00131a; }
+.tone-yellow { --tone: var(--color-yellow); --tone-ink: #1a1400; }
+.tone-pink   { --tone: var(--color-pink);   --tone-ink: #1f0a16; }
+.tone-green  { --tone: var(--color-green);  --tone-ink: #00160f; }
+.tone-purple { --tone: var(--color-purple); --tone-ink: #fff; }
+.tone-red    { --tone: var(--color-red);    --tone-ink: #fff; }
+.tone-muted  { --tone: var(--color-muted);  --tone-ink: #0b1220; }
+
+/* Tersedia untuk pembaca layar saja */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pixelated { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+/* Animasi sederhana, dimatikan otomatis oleh reduced-motion (lihat base.css) */
+@keyframes px-blink { 50% { opacity: 0.25; } }
+@keyframes px-pop   { 0% { transform: translateY(8px); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@keyframes px-bob   { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+
+.anim-blink { animation: px-blink 1s steps(2, end) infinite; }
+.anim-bob   { animation: px-bob 1.2s steps(2, end) infinite; }

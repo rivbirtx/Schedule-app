@@ -1,0 +1,393 @@
+/*
+ * layout.css - kerangka halaman: sidebar, header, area halaman, bottom nav, dan grid tiap halaman.
+ * Komponen kecil (tombol, badge, kartu) ada di components.css.
+ *
+ * Strategi responsif (mobile-first, breakpoint bawaan Tailwind v4):
+ *   < 768px   MOBILE : tanpa sidebar, bottom navigation tetap di bawah
+ *   768-1023  TABLET : sidebar ringkas (hanya ikon)
+ *   >= 1024   DESKTOP: sidebar penuh dengan ilustrasi
+ */
+
+/* ---- Kerangka -------------------------------------------------------------- */
+
+.app-shell {
+  min-height: 100vh;
+  display: block;
+}
+
+.app-main {
+  min-width: 0; /* agar konten lebar (kanban, tabel) bisa di-scroll di dalam, bukan melebarkan halaman */
+  padding: 0.75rem 0.75rem calc(var(--bottom-nav-height) + 1.25rem);
+}
+
+.page {
+  outline: none;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .app-shell {
+    display: grid;
+    grid-template-columns: var(--sidebar-width-compact) minmax(0, 1fr);
+  }
+  .app-main {
+    padding: 1rem 1.25rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-shell {
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  }
+  .app-main {
+    padding: 1.25rem 1.5rem 2rem;
+  }
+}
+
+/* ---- Sidebar ---------------------------------------------------------------- */
+
+.sidebar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 0.75rem 0.5rem;
+    background: var(--color-surface);
+    border-right: var(--border-width) solid var(--color-edge);
+    box-shadow: inset -2px 0 0 #0a1322;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+.sidebar__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.25rem 0.75rem;
+  border: var(--border-width) solid var(--color-edge);
+  background: var(--color-surface-2);
+  text-align: center;
+}
+
+.sidebar__title {
+  display: none;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--color-yellow);
+  text-shadow: 2px 2px 0 #000;
+}
+
+.sidebar__logo {
+  width: 2.6rem;
+  height: auto;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sidebar__scene,
+.sidebar__cheer,
+.sidebar__hearts {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    padding: 0.75rem;
+  }
+  .sidebar__title {
+    display: block;
+  }
+  .sidebar__logo {
+    width: 3.5rem;
+  }
+  .sidebar__scene {
+    display: block;
+    margin-top: auto;
+    border: var(--border-width) solid var(--color-line);
+    background: #0a1322;
+    line-height: 0;
+  }
+  .sidebar__scene img {
+    width: 100%;
+    height: auto;
+  }
+  .sidebar__cheer {
+    display: block;
+    padding: 0.55rem 0.4rem;
+    border: var(--border-width) solid var(--color-yellow);
+    background: var(--color-surface-2);
+    color: var(--color-yellow);
+    font-size: 0.5rem;
+    line-height: 1.7;
+    text-align: center;
+  }
+  .sidebar__hearts {
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+}
+
+/* Tablet: label disembunyikan secara visual, tetap terbaca pembaca layar */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .sidebar__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+/* ---- Bottom navigation (mobile) --------------------------------------------- */
+
+.bottom-nav {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 40;
+  height: var(--bottom-nav-height);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  background: var(--color-surface);
+  border-top: var(--border-width) solid var(--color-edge);
+  box-shadow: 0 -2px 0 0 #000;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
+}
+
+/* ---- Header ------------------------------------------------------------------ */
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.page-header__title {
+  font-size: 0.95rem;
+  color: var(--color-yellow);
+  padding: 0.7rem 0.9rem;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-yellow);
+  box-shadow: var(--shadow-pixel);
+  text-shadow: 2px 2px 0 #000;
+}
+
+.page-header__chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .page-header__title {
+    font-size: 1.15rem;
+  }
+}
+
+/* ---- Dashboard ---------------------------------------------------------------- */
+
+.dash {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dash__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.dash__main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (min-width: 640px) {
+  .dash__stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Kanban + Today Schedule berdampingan (sesuai gambar referensi) */
+@media (min-width: 1100px) {
+  .dash__main {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+  }
+}
+
+/* ---- Kanban -------------------------------------------------------------------- */
+
+.kanban__columns {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(12rem, 1fr);
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x proximity;
+}
+
+.kanban__columns > * {
+  scroll-snap-align: start;
+}
+
+@media (max-width: 639.98px) {
+  .kanban__columns {
+    grid-auto-columns: 82%;
+  }
+}
+
+/* ---- Calendar ----------------------------------------------------------------- */
+
+.calendar-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (min-width: 1280px) {
+  .calendar-page {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+  }
+}
+
+/* ---- Tasks ----------------------------------------------------------------------- */
+
+.tasks-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ---- Stats ----------------------------------------------------------------------- */
+
+.stats-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stats-page__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.stats-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .stats-tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .stats-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+}
+
+@media (max-width: 479.98px) {
+  .stats-tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---- Settings --------------------------------------------------------------------- */
+
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 52rem;
+}
+
+/* ---- Toast ---------------------------------------------------------------------------- */
+
+.toast-root {
+  position: fixed;
+  z-index: 80;
+  right: 0.75rem;
+  left: 0.75rem;
+  bottom: calc(var(--bottom-nav-height) + 0.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .toast-root {
+    left: auto;
+    bottom: 1rem;
+    right: 1rem;
+    width: min(24rem, calc(100vw - 2rem));
+  }
+}
+
+/* ---- Modal ------------------------------------------------------------------------------ */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  background: rgba(3, 7, 18, 0.82); /* gelap polos, tanpa blur */
+  overflow-y: auto;
+}
+
+@media (min-width: 640px) {
+  .modal-backdrop {
+    align-items: center;
+    padding: 1.5rem;
+  }
+}
+
+body.modal-open {
+  overflow: hidden;
+}
