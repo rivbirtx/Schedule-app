@@ -35,10 +35,6 @@ function hearts(streak) {
 
 export function renderSidebar({ ui, progress }) {
   return html`
-    <div class="sidebar__brand">
-      <span class="sidebar__title font-pixel">PIXEL<br />SCHEDULE</span>
-      <img class="pixelated sidebar__logo" src="${assetUrl('assets/images/gamepad.svg')}" alt="" width="56" height="35" />
-    </div>
     <nav class="sidebar__nav" aria-label="Main navigation">
       ${PAGES.map((page) => navLink(page, ui.page, 'sidebar'))}
     </nav>

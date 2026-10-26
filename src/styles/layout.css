@@ -79,14 +79,6 @@
   text-align: center;
 }
 
-.sidebar__title {
-  display: none;
-  font-size: 0.7rem;
-  line-height: 1.5;
-  color: var(--color-yellow);
-  text-shadow: 2px 2px 0 #000;
-}
-
 .sidebar__logo {
   width: 2.6rem;
   height: auto;
@@ -107,9 +99,6 @@
 @media (min-width: 1024px) {
   .sidebar {
     padding: 0.75rem;
-  }
-  .sidebar__title {
-    display: block;
   }
   .sidebar__logo {
     width: 3.5rem;
