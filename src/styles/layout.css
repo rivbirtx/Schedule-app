@@ -227,9 +227,18 @@
 }
 
 /* Kanban + Today Schedule berdampingan (sesuai gambar referensi) */
+/* Calendar di kiri; Events + Today Schedule bertumpuk di kanan */
 @media (min-width: 1100px) {
   .dash__main {
-    grid-template-columns: minmax(0, 1fr) 20rem;
+    grid-template-columns: minmax(0, 1fr) 22rem;
+  }
+  .dash__main > .calendar {
+    grid-column: 1;
+    grid-row: 1 / span 2;   /* kalender setinggi dua baris */
+  }
+  .dash__main > .cal-detail,
+  .dash__main > .agenda {
+    grid-column: 2;         /* keduanya di kolom kanan, tersusun ke bawah */
   }
 }
 

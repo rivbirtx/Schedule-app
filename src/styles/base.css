@@ -2,23 +2,16 @@
 /* base.css - gaya elemen dasar. Tidak ada komponen di sini. */
 
 html {
-  background: var(--color-night);
-  color-scheme: dark;
-  -webkit-text-size-adjust: 100%;
+  @apply bg-night [color-scheme:dark] [-webkit-text-size-adjust:100%];
 }
 
 body {
-  background:
-    linear-gradient(
-      rgba(34, 211, 238, 0.035) 1px,
-      transparent 1px
-    ) 0 0 / 16px 16px,
-    linear-gradient(
-      90deg,
-      rgba(34, 211, 238, 0.035) 1px,
-      transparent 1px
-    ) 0 0 / 16px 16px,
-    var(--color-night);
+  @apply m-0 min-h-screen bg-night text-ink font-sans text-sm leading-[1.45] antialiased;
+  /* kisi pixel: gradient berlapis, tidak ada utility setaranya -> tetap CSS biasa */
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.035) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
 
 h1, h2, h3, h4 {
@@ -28,15 +21,8 @@ h1, h2, h3, h4 {
 /* Heading arcade */
 .font-pixel,
 .px-title {
+  @apply font-normal tracking-normal leading-normal;
   font-family: var(--font-pixel);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.5;
-}
-
-button, input, select, textarea {
-  font: inherit;
-  color: inherit;
 }
 
 button {
