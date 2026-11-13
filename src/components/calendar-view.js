@@ -206,40 +206,7 @@ function detailPanel(index, ui) {
   const selected = ui.calendar.selected;
   const day = index.get(selected) ?? EMPTY_DAY;
   const empty = day.events.length + day.deadlines.length === 0;
-  return html`
-    <section class="px-panel cal-detail" aria-labelledby="cal-detail-title">
-      <header class="px-panel__head">
-        <h2 class="px-panel__title font-pixel" id="cal-detail-title">${icon('calendar', { size: 16, className: 'text-cyan' })} Events on ${formatLongDate(selected)}</h2>
-        <button type="button" class="px-btn px-btn--primary px-btn--sm" data-action="add-event" data-date="${selected}">
-          ${icon('plus', { size: 12 })} Add Event
-        </button>
-      </header>
-      ${empty ? html`<p class="cal-detail__empty">No events or deadlines. Press "Add Event" to plan this day.</p>` : ''}
-      <ul class="cal-detail__list">
-        ${day.events.map(
-          (event) => html`
-            <li class="cal-detail__row">
-              <span class="agenda__dot tone-${event.color}" aria-hidden="true"></span>
-              <span class="cal-detail__time">${event.startTime} - ${event.endTime}</span>
-              <span class="cal-detail__title">${event.title}</span>
-              <button type="button" class="icon-btn icon-btn--framed" data-action="edit-event" data-id="${event.id}" aria-label="Edit event ${event.title}">${icon('edit', { size: 12 })}</button>
-              <button type="button" class="icon-btn icon-btn--framed icon-btn--danger" data-action="delete-event" data-id="${event.id}" aria-label="Delete event ${event.title}">${icon('trash', { size: 12 })}</button>
-            </li>
-          `,
-        )}
-        ${day.deadlines.map(
-          (task) => html`
-            <li class="cal-detail__row">
-              <span class="cal-dot cal-dot--${deadlineKind(task)}" aria-hidden="true"></span>
-              <span class="cal-detail__time">Deadline</span>
-              <span class="cal-detail__title ${task.status === 'done' ? 'is-done' : ''}">${task.title}</span>
-              <button type="button" class="icon-btn icon-btn--framed" data-action="edit-task" data-id="${task.id}" aria-label="Edit task ${task.title}">${icon('edit', { size: 12 })}</button>
-            </li>
-          `,
-        )}
-      </ul>
-    </section>
-  `;
+
 }
 
 // ---------------------------------------------------------------------------

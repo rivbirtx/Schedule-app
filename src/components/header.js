@@ -9,10 +9,9 @@ import { icon } from './icons.js';
 
 export function renderHeader({ title, progress, todayKey }) {
   return html`
-    <h1 class="page-header__title font-pixel" id="page-title">${title}</h1>
     <div class="page-header__chips">
       <div class="chip chip--level" title="Level ${progress.level}">
-        ${icon('star', { size: 14, className: 'text-yellow' })}
+        ${icon('star', { size: 10, className: 'text-yellow' })}
         <span class="font-pixel chip__text">LV ${progress.level}</span>
       </div>
       <div class="chip chip--xp" title="${progress.xpIntoLevel} of ${progress.xpPerLevel} XP to next level">
